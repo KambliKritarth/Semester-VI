@@ -1,84 +1,80 @@
 ''' bfs for 8 puzzle
 '''
-start_matrix = [[1,2,3],[7,4,6],[0,5,8]]
+start_matrix = [[1,2,3],[7,0,6],[4,5,8]]
 goal_matrix = [[1,2,3],[4,5,6],[7,8,0]]
 def up(matrix0,a,b):
     temp = matrix0[a][b]
     matrix0[a][b] = matrix0[a-1][b]
     matrix0[a-1][b] = temp
+    return matrix0
 
 def left(matrix1,a,b):
     temp = matrix1[a][b]
     matrix1[a][b] = matrix1[a][b-1]
     matrix1[a][b-1] = temp
+    return matrix1
     
 
 def right(matrix2,a,b):
     temp = matrix2[a][b]
     matrix2[a][b] = matrix2[a][b+1]
     matrix2[a][b+1] = temp
+    return matrix2
 
 def down(matrix,a,b):
     temp = matrix[a][b]
     matrix[a][b] = matrix[a+1][b]
     matrix[a+1][b] = temp
+    return matrix
 
 #print("Starting state is:")
-matrix_list = []
+matrix_list =[]
 
 def zero_indicator(matrix):
     row = 0
     for i in matrix:
+        column = 0
         for j in i:
             #print(j,end = ",")
-            column = 0
 
             if j == 0:
                 print(row)
                 print(column)
                 if row!=0:
-                    up(matrix,row,column)
+                    mat1 = up(matrix,row,column)
                     print("After swapping matrix is:")
-                    for k in matrix:
+                    for k in mat1:
                         for l in k:
                             print(l,end = ",")
                         print("\n")
-                    mat = matrix
-                    matrix_list.append(mat)
-                    up(matrix,row,column)
+                    matrix_list.append(mat1)
+                    print(matrix_list)
+                matrix_list.append(mat1)
                 if column!=0:
-                    left(matrix,row,column)
+                    mat2 =left(matrix,row,column)
                     print("After swapping matrix is:")
-                    for k in matrix:
+                    for k in mat2:
                         for l in k:
                             print(l,end = ",")
                         print("\n")
-                    mat = matrix
-                    matrix_list.append(mat)
-                    left(matrix,row,column)
+                    matrix_list.append(mat2)
                 if row!=2:
-                    down(matrix,row,column)
+                    mat3 = down(matrix,row,column)
                     print("After swapping matrix is:")
-                    for k in matrix:
+                    for k in mat3:
                         for l in k:
                             print(l,end = ",")
                         print("\n")
-                    mat = matrix
-                    matrix_list.append(mat)
-                    down(matrix,row,column)
+                    matrix_list.append(mat3)
                 if column!=2:
-                    right(matrix,row,column)
+                    mat4 = right(matrix,row,column)
                     print("After swapping matrix is:")
-                    for k in matrix:
+                    for k in mat4:
                         for l in k:
                             print(l,end = ",")
                         print("\n")
-                    mat = matrix
-                    
-                    matrix_list.append(mat)
-                    for m in matrix_list:
-                        print(m)
-                    right(matrix,row,column)
+                    matrix_list.append(mat4)
+                    print(matrix_list)
             column = column + 1
         row = row + 1
         
